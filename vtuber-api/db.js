@@ -25,7 +25,29 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the JSON API!' });
 });
 
-app.post('http://localhost:3001/streams', async (req, res) => {
+app.post('/api/synchronize', async (req, res) => {
+  // Replace this URL with the actual URL of your GET route that returns the JSON data
+  const jsonUrl = 'http://localhost:3001/streams';
+
+  try {
+    // Fetch the JSON data
+    const response = await axios.get(jsonUrl);
+    const jsonData = response.data;
+
+    // Process the JSON data using the existing /api/streams route
+    for (const stream of jsonData) {
+      await axios.post('http://localhost:3001/api/streams', stream);
+    }
+
+    res.status(201).json({ message: 'Stream data synchronized successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while synchronizing stream data' });
+  }
+});
+
+
+app.post('/api/streams', async (req, res) => {
   const {
     id,
     user_login,
