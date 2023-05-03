@@ -5,6 +5,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
 
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 3001;
 const clientId = '00b4uwte2ha412s5u2w58oyb6u4mtr';
