@@ -73,10 +73,8 @@ app.post('/api/streams', async (req, res) => {
     language,
     thumbnail_url,
     is_mature,
+    syncTimestamp
   } = req.body;
-
-  // Store the synchronization timestamp
-  const syncTimestamp = new Date();
 
   try {
     // Begin a transaction
@@ -84,8 +82,8 @@ app.post('/api/streams', async (req, res) => {
 
     // Insert or update the main stream data
     await pool.query(
-      `INSERT INTO streams (id, user_login, user_name, game_name, type, title, viewer_count, started_at, language, thumbnail_url, is_mature, last_updated)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      `INSERT INTO streams (id, user_login, user_name, game_name, type, title, viewer_count, started_at, language, thumbnail_url, is_mature, last_updated, syncTimestamp)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
       ON CONFLICT (id) DO UPDATE SET 
         user_login = EXCLUDED.user_login,
         user_name = EXCLUDED.user_name,
@@ -97,7 +95,8 @@ app.post('/api/streams', async (req, res) => {
         language = EXCLUDED.language,
         thumbnail_url = EXCLUDED.thumbnail_url,
         is_mature = EXCLUDED.is_mature,
-        last_updated = EXCLUDED.last_updated`,
+        last_updated = EXCLUDED.last_updated,
+        syncTimestamp = EXCLUDED syncTimestamp`,
       [
         id,
         user_login,
