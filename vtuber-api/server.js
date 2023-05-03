@@ -14,6 +14,10 @@ const clientSecret = 'k3upvg7yyw0iolq5djcdatq10lz921';
 const maxPages = 100;
 const pageSize = 100;
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 app.get('/streams', async (req, res) => {
   try {
     const tokenResponse = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`);
