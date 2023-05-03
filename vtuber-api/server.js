@@ -1,11 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { Pool } = require('pg');
-
-dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -13,15 +7,6 @@ const clientId = '00b4uwte2ha412s5u2w58oyb6u4mtr';
 const clientSecret = 'k3upvg7yyw0iolq5djcdatq10lz921';
 const maxPages = 100;
 const pageSize = 100;
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 
 app.get('/streams', async (req, res) => {
   try {
