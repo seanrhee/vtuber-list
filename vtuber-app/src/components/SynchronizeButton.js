@@ -5,7 +5,7 @@ const SynchronizeButton = () => {
   const synchronizeData = async () => {
     try {
       // Replace this URL with the actual URL of your Express app's /api/synchronize route
-      const apiUrl = 'http://localhost:3000/api/synchronize';
+      const apiUrl = 'http://localhost:3002/api/synchronize';
 
       // Make a POST request to the /api/synchronize route
       const response = await axios.post(apiUrl);

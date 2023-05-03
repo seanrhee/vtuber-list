@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
+const axios = require('axios');
 
 // Load environment variables
 dotenv.config();
@@ -32,19 +33,31 @@ app.post('/api/synchronize', async (req, res) => {
   try {
     // Fetch the JSON data
     const response = await axios.get(jsonUrl);
+    console.log('JSON data fetched:', response.data);
     const jsonData = response.data;
 
-    // Process the JSON data using the existing /api/streams route
-    for (const stream of jsonData) {
-      await axios.post('http://localhost:3001/api/streams', stream);
-    }
+    try {
+      for (const stream of jsonData) {
+        // Generate the synchronization timestamp for each stream
+        const syncTimestamp = new Date();
+        
+        // Add the syncTimestamp to the stream object
+        stream.syncTimestamp = syncTimestamp;
 
-    res.status(201).json({ message: 'Stream data synchronized successfully' });
+        const postResponse = await axios.post('http://localhost:3002/api/streams', stream);
+        console.log('Stream data POST response:', postResponse.data);
+      }
+      res.status(201).json({ message: 'Stream data synchronized successfully' });
+    } catch (error) {
+      console.error('POST request error:', error);
+      res.status(500).json({ message: 'An error occurred while processing stream data' });
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'An error occurred while synchronizing stream data' });
+    console.error('GET request error:', error);
+    res.status(500).json({ message: 'An error occurred while fetching JSON data' });
   }
 });
+
 
 
 app.post('/api/streams', async (req, res) => {
