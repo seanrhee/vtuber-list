@@ -33,25 +33,18 @@ app.post('/api/synchronize', async (req, res) => {
   try {
     // Fetch the JSON data
     const response = await axios.get(jsonUrl);
-
     console.log('JSON data fetched:', response.data);
-
     const jsonData = response.data;
 
-    // Store the synchronization timestamp
-    const syncTimestamp = new Date();
-
     try {
+      // Reset the streams table
+      await pool.query('DELETE FROM streams');
+
       for (const stream of jsonData) {
-        const postResponse = await axios.post('http://localhost:3002/api/streams', {
-          ...stream,
-          syncTimestamp,
-        });
+        const postResponse = await axios.post('http://localhost:3002/api/streams', stream);
         console.log('Stream data POST response:', postResponse.data);
       }
-      // Remove entries that were not updated during this synchronization
-      await pool.query('DELETE FROM streams WHERE last_updated < $1', [syncTimestamp]);
-      
+
       res.status(201).json({ message: 'Stream data synchronized successfully' });
     } catch (error) {
       console.error('POST request error:', error);
@@ -61,8 +54,8 @@ app.post('/api/synchronize', async (req, res) => {
     console.error('GET request error:', error);
     res.status(500).json({ message: 'An error occurred while fetching JSON data' });
   }
-
 });
+
 
 app.post('/api/streams', async (req, res) => {
   const {
