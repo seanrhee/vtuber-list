@@ -35,10 +35,11 @@ app.post('/api/synchronize', async (req, res) => {
     const response = await axios.get(jsonUrl);
     console.log('JSON data fetched:', response.data);
     const jsonData = response.data;
+    
+    await pool.query('DELETE FROM streams;');
 
     try {
       // Reset the streams table
-      await pool.query('DELETE FROM streams');
 
       for (const stream of jsonData) {
         const postResponse = await axios.post('http://localhost:3002/api/streams', stream);
