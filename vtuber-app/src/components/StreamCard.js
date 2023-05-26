@@ -5,7 +5,7 @@ function StreamCard({ stream }) {
     <div className="stream-card">
       <h2>{stream.user_name}</h2>
       <p>{stream.game_name}</p>
-      {/* Display other stream details here */}
+      <p>{stream.title}</p>
     </div>
   );
 }

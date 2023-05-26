@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import StreamCard from './StreamCard';  // Make sure to import StreamCard
+import StreamCard from './components/StreamCard';  // Make sure to import StreamCard
 
 function App() {
   const [streams, setStreams] = useState([]);
