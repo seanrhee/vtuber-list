@@ -122,7 +122,16 @@ app.post('/api/streams', async (req, res) => {
   }
 });
 
-
+// route to get the data
+app.get('/api/streams', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM streams');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while retrieving stream data' });
+  }
+});
 
 // Start the server
 const PORT = process.env.PORT || 3002;
