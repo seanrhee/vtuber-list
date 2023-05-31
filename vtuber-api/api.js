@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -7,6 +8,8 @@ const clientId = '00b4uwte2ha412s5u2w58oyb6u4mtr';
 const clientSecret = 'k3upvg7yyw0iolq5djcdatq10lz921';
 const maxPages = 100;
 const pageSize = 100;
+
+app.use(cors());
 
 app.get('/streams', async (req, res) => {
   try {
