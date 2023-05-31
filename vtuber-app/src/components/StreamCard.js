@@ -8,8 +8,8 @@ function StreamCard({ stream }) {
         <h2>{stream.user_name}</h2>
       </div>
       <div className="streamcard-info">
+        <p>{stream.title.length > 35 ? `${stream.title.substring(0, 35)}...` : stream.title}</p>
         <p>{stream.game_name}</p>
-        <p>{stream.title}</p>
       </div>
     </div>
   );
