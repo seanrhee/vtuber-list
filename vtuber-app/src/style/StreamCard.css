@@ -6,10 +6,33 @@
   margin: 0.5em;
 }
 
+.image-container {
+  position: relative
+}
+
 .viewer-count {
-  
+  position: absolute;
+  background-color: black;
+  background-blend-mode: overlay;
+  color: white;
+  bottom: 0px;
+  left: 0px;
+  margin: 0.5em;
 }
 
 h2 {
   margin: 0;
+}
+
+.streamcard-info {
+  display: flex;
+  flex-direction: column;
+}
+
+h4 {
+  margin: 0;
+}
+
+.game-name {
+  margin-top: 1em;
 }
