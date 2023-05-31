@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StreamCard from './components/StreamCard';  // Make sure to import StreamCard
 
+import './style/App.css';
 import './style/StreamCard.css';
 
 function App() {
