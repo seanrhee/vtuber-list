@@ -3,4 +3,13 @@
   flex-direction: column;
   width: 304px;
   padding: 1em;
+  margin: 0.5em;
+}
+
+.viewer-count {
+  
+}
+
+h2 {
+  margin: 0;
 }

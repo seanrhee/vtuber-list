@@ -5,6 +5,7 @@ function StreamCard({ stream }) {
     <div className="stream-card">
       <div className="thumbnail-name">
         <img src={stream.thumbnail_url.replace('{width}', '304').replace('{height}', '171')} alt={stream.user_name} />
+        <p className="viewer-count">{stream.viewer_count}</p>
         <h2>{stream.user_name}</h2>
       </div>
       <div className="streamcard-info">
