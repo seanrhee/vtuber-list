@@ -4,7 +4,7 @@ function StreamCard({ stream }) {
   return (
     <div className="stream-card">
       <div className="thumbnail-name">
-        <img src={stream.thumbnail_url.replace('{width}', '320').replace('{height}', '180')} alt={stream.user_name} />
+        <img src={stream.thumbnail_url.replace('{width}', '304').replace('{height}', '171')} alt={stream.user_name} />
         <h2>{stream.user_name}</h2>
       </div>
       <div className="streamcard-info">

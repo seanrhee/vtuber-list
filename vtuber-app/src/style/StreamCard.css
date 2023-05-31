@@ -1,3 +1,6 @@
 .stream-card {
-  
+  display: flex;
+  flex-direction: column;
+  width: 304px;
+  padding: 1em;
 }
