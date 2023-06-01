@@ -29,12 +29,23 @@ h2 {
 .streamcard-info {
   display: flex;
   flex-direction: column;
+  justify-content:end;
 }
 
 .stream-title {
+  display: flex;
   margin: 0.5em 0 0.5em;
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 .game-name {
+  display: flex;
+  flex-grow: 1;
   margin: 0;
+  font-size: smaller;
+  font-style: italic;
 }
