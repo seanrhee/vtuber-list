@@ -1,8 +1,8 @@
 import React from "react";
 
-function StreamCard({ stream }) {
+function StreamCard({ stream, onClick }) {
   return (
-    <div className="card-container">
+    <div className="card-container" onClick={() => onClick(stream)}>
       <div className="stream-card">
         <div className="thumbnail-name">
           <div className="image-container">
