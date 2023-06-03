@@ -6,7 +6,7 @@ import StreamCardOverlay from "./StreamCardOverlay";
 
 export default function StreamCardContainer () {
   const [streams, setStreams] = useState([]);
-  const [streamSelect, setStreamSelect] = userState(null);
+  const [streamSelect, setStreamSelect] = useState(null);
 
   const handleCardClick = (stream) => {
     setStreamSelect(stream);
@@ -33,9 +33,9 @@ export default function StreamCardContainer () {
   return (
     <div className="stream-cards-container">
       {streams.map(stream => (
-        <StreamCard key={stream.id} stream={stream} />
+        <StreamCard key={stream.id} stream={stream} onClick={handleCardClick} />
       ))}
-      {selectedStream && (
+      {streamSelect && (
         <StreamCardOverlay stream={streamSelect} onClose={handleCloseOverlay} />
       )}
     </div>
