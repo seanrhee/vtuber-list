@@ -2,9 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import StreamCard from './StreamCard'
+import StreamCardOverlay from "./StreamCardOverlay";
 
 export default function StreamCardContainer () {
   const [streams, setStreams] = useState([]);
+  const [streamSelect, setStreamSelect] = userState(null);
+
+  const handleCardClick = (stream) => {
+    setStreamSelect(stream);
+  };
+
+  const handleCloseOverlay = () => {
+    setStreamSelect(null);
+  };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +35,9 @@ export default function StreamCardContainer () {
       {streams.map(stream => (
         <StreamCard key={stream.id} stream={stream} />
       ))}
+      {selectedStream && (
+        <StreamCardOverlay stream={streamSelect} onClose={handleCloseOverlay} />
+      )}
     </div>
   )
 }
