@@ -7,6 +7,7 @@ import StreamCardOverlay from "./StreamCardOverlay";
 export default function StreamCardContainer () {
   const [streams, setStreams] = useState([]);
   const [streamSelect, setStreamSelect] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleCardClick = (stream) => {
     setStreamSelect(stream);
@@ -17,12 +18,14 @@ export default function StreamCardContainer () {
   };
 
   const fetchData = async () => {
+    setRefreshing(true);
     try {
       const response = await axios.get('http://localhost:3001/streams');
       setStreams(response.data);
     } catch (error) {
       console.error(error);
     }
+    setRefreshing(false);
   };
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function StreamCardContainer () {
 
   return (
     <div className="stream-cards-container">
-      <button className="refresh" onClick={fetchData}><i class="fa-solid fa-arrows-rotate" style={{"color": "#ffffff"}}></i></button>
+      <button className="refresh" onClick={fetchData}><i class={`fa-solid fa-arrows-rotate ${refreshing ? 'fa-spin' : ''} refresh-button`}></i></button>
       {streams.map(stream => (
         <StreamCard key={stream.id} stream={stream} onClick={handleCardClick} />
       ))}

@@ -3,3 +3,18 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.refresh {
+  height: 50px;
+  width: 50px;
+  background-color: #000;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 3;
+  bottom: 1.25em;
+  right: 1.25em;
+}
+
+.refresh-button {
+  color: #fff;
+}
