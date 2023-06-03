@@ -16,22 +16,22 @@ export default function StreamCardContainer () {
     setStreamSelect(null);
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/streams');
+      setStreams(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/streams');
-        setStreams(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchData();
   }, []);
 
   return (
     <div className="stream-cards-container">
+      <button onClick={fetchData}>Refresh List</button>
       {streams.map(stream => (
         <StreamCard key={stream.id} stream={stream} onClick={handleCardClick} />
       ))}
