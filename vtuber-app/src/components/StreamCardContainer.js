@@ -31,7 +31,7 @@ export default function StreamCardContainer () {
 
   return (
     <div className="stream-cards-container">
-      <button onClick={fetchData}>Refresh List</button>
+      <button className="refresh" onClick={fetchData}><i class="fa-solid fa-arrows-rotate" style={{"color": "#ffffff"}}></i></button>
       {streams.map(stream => (
         <StreamCard key={stream.id} stream={stream} onClick={handleCardClick} />
       ))}
