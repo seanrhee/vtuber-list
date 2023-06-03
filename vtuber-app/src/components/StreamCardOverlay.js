@@ -14,3 +14,5 @@ function StreamCardOverlay ({stream, onClose}) {
     </div>
   )
 }
+
+export default StreamCardOverlay;
