@@ -33,6 +33,10 @@ function StreamCardOverlay ({stream, onClose}) {
           <h2>{stream.user_name}</h2>
           <p className="overlay-stream-title">{stream.title}</p>
           <p className="game-name">{stream.game_name}</p>
+          <div className="overlay-secondary-info">
+            <p className="overlay-info-text">18+: {stream.is_mature ? 'YES' : "NO"}</p>
+            <p className="overlay-info-text">Language: {stream.language.toUpperCase()}</p>
+          </div>
         </div>
       </div>
     </div>

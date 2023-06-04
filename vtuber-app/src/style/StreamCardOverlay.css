@@ -16,12 +16,13 @@
   width: 80%;
   max-width: 600px;
   display: flex;
+  align-items: stretch;
 }
 
 .overlay-thumbnail-cta {
   display: flex;
   flex-direction: column;
-  width: 66%;
+  flex: 2;
 }
 
 .overlay-thumbnail {
@@ -44,5 +45,15 @@
 .overlay-info {
   display: flex;
   flex-direction: column;
-  padding: 0 1em 0;
+  flex: 2;
+  padding: 0 0 0 0.5em;
+}
+
+.overlay-info-text {
+  margin: 0;
+  font-size: smaller;
+}
+
+.overlay-secondary-info {
+  margin-top: 1em;
 }
