@@ -15,4 +15,34 @@
   padding: 20px;
   width: 80%;
   max-width: 600px;
+  display: flex;
+}
+
+.overlay-thumbnail-cta {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+}
+
+.overlay-thumbnail {
+  width: 100%;
+  pointer-events: auto;
+}
+
+.overlay-cta {
+  margin: 0;
+  font-size: smaller;
+  font-style: italic;
+}
+
+.overlay-stream-title {
+  margin: 0.5em 0 0.5em;
+  font-weight: bold;
+  font-size: small;
+}
+
+.overlay-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 0;
 }
