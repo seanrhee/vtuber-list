@@ -16,7 +16,11 @@
   width: 80%;
   max-width: 600px;
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
+}
+
+.overlay-top {
+  display: flex;
 }
 
 .overlay-thumbnail-cta {
@@ -39,7 +43,6 @@
 .overlay-stream-title {
   margin: 0.5em 0 0.5em;
   font-weight: bold;
-  font-size: small;
 }
 
 .overlay-info {
@@ -47,6 +50,7 @@
   flex-direction: column;
   flex: 2;
   padding: 0 0 0 0.5em;
+  justify-content: space-between;
 }
 
 .overlay-info-text {
@@ -55,5 +59,11 @@
 }
 
 .overlay-secondary-info {
-  margin-top: 1em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.overlay-bottom {
+  display: flex;
+  justify-content: center;
 }
